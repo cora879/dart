@@ -1,0 +1,114 @@
+// Step 1: Object-oriented model using classes and inheritance
+
+// Parent class
+class Animal {
+  String name;
+  
+  Animal(this.name);
+  
+  void makeSound() {
+    print('Animal makes a sound');
+  }
+}
+
+// Child class inheriting from Animal
+class Dog extends Animal {
+  Dog(String name) : super(name);
+  
+  @override
+  void makeSound() {
+    print('Dog barks');
+  }
+}
+
+// Step 2: Class implementing an interface
+
+// Interface
+abstract class Drawable {
+  void draw();
+}
+
+// Class implementing Drawable interface
+class Circle implements Drawable {
+  @override
+  void draw() {
+    print('Drawing a circle');
+  }
+}
+
+// Step 3: Class overriding an inherited method
+
+// Parent class
+class Shape {
+  void draw() {
+    print('Shape is drawn');
+  }
+}
+
+// Child class overriding draw method
+class Rectangle extends Shape {
+  @override
+  void draw() {
+    print('Rectangle is drawn');
+  }
+}
+
+// Step 4: Instance of a class initialized with data from a file
+
+import 'dart:io';
+
+class Person {
+  String name;
+  int age;
+  
+  Person(this.name, this.age);
+  
+  static Person fromFile(String fileName) {
+    File file = File(fileName);
+    List<String> lines = file.readAsLinesSync();
+    if (lines.isNotEmpty) {
+      List<String> parts = lines[0].split(',');
+      String name = parts[0];
+      int age = int.parse(parts[1]);
+      return Person(name, age);
+    } else {
+      throw Exception('File is empty');
+    }
+  }
+}
+
+// Step 5: Method demonstrating the use of a loop
+
+class CountNumbers {
+  void printNumbers(int count) {
+    for (int i = 1; i <= count; i++) {
+      print(i);
+    }
+  }
+}
+
+void main() {
+  // Step 1: Object-oriented model using classes and inheritance
+  var dog = Dog('Buddy');
+  dog.makeSound(); // Outputs: Dog barks
+  
+  // Step 2: Class implementing an interface
+  var circle = Circle();
+  circle.draw(); // Outputs: Drawing a circle
+  
+  // Step 3: Class overriding an inherited method
+  var rectangle = Rectangle();
+  rectangle.draw(); // Outputs: Rectangle is drawn
+  
+  // Step 4: Instance of a class initialized with data from a file
+  try {
+    var person = Person.fromFile('person.txt');
+    print('Person: ${person.name}, Age: ${person.age}');
+  } catch (e) {
+    print('Error: $e');
+  }
+  
+  // Step 5: Method demonstrating the use of a loop
+  var counter = CountNumbers();
+  counter.printNumbers(5); // Outputs: 1, 2, 3, 4, 5
+}
